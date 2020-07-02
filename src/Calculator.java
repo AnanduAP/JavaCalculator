@@ -34,7 +34,7 @@ public Calculator() {
 	jf.setSize(500,650);
 	jf.setLocation(675,225); 		//Where to display the frame (initial visible location)
 	
-	displayLabel=new JLabel("Hello Enter values"); 			//for Text area
+	displayLabel=new JLabel(); 			//for Text area
 	displayLabel.setBounds(30, 55, 420, 45);
 	displayLabel.setBackground(Color.GRAY);  	//add color to the text area
 	displayLabel.setOpaque(true);
@@ -149,11 +149,54 @@ public Calculator() {
 	
 }
 public static void main(String ar[]){
-	new Calculator(); 							//creating object for calculator new need to assign a variable (optional)
+	new Calculator(); 			//creating object for calculator new need to assign a variable (optional)
 }
 @Override
 public void actionPerformed(ActionEvent e) {
-	displayLabel.setText("7");
+	if (e.getSource()==seven) {
+		displayLabel.setText(displayLabel.getText()+"7");  //displaylabel.getText inside setText used for concatinatination
+	}
+	else if (e.getSource()==eight) {
+		displayLabel.setText(displayLabel.getText()+"8");
+	}
+	else if (e.getSource()==nine) {
+		displayLabel.setText(displayLabel.getText()+"9");
+	}
+	else if (e.getSource()==div) {
+	}
+	else if (e.getSource()==four) {
+		displayLabel.setText(displayLabel.getText()+"4");
+	}
+	else if (e.getSource()==five) {
+		displayLabel.setText(displayLabel.getText()+"5");
+	}
+	else if (e.getSource()==six) {
+		displayLabel.setText(displayLabel.getText()+"6");
+	}
+	else if (e.getSource()==mul) {
+	}
+	else if (e.getSource()==one) {
+		displayLabel.setText(displayLabel.getText()+"1");
+	}
+	else if (e.getSource()==two) {
+		displayLabel.setText(displayLabel.getText()+"2");
+	}
+	else if (e.getSource()==three) {
+		displayLabel.setText(displayLabel.getText()+"3");
+	}
+	else if (e.getSource()==minus) {
+	}
+	else if (e.getSource()==dot) {
+		displayLabel.setText(displayLabel.getText()+".");
+	}
+	else if (e.getSource()==zero) {
+		displayLabel.setText(displayLabel.getText()+"0");
+	}
+	else if (e.getSource()==equal) {
+	}
+	else if(e.getSource()==plus) {
+	}
+	
 	
 }
 }
