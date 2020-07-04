@@ -9,6 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class Calculator implements ActionListener{
+	
+	boolean isOperatorClicked=false;
+	String oldvalue;	//for store previous value 
 	JFrame jf;	
 	JLabel displayLabel;	//declare its as global since it is also need to use in other classes
 	JButton seven;
@@ -27,15 +30,16 @@ public class Calculator implements ActionListener{
 	JButton zero;
 	JButton dot;
 	JButton plus;
+	JButton clr;
 	
 public Calculator() {
 	jf=new JFrame("calculator");			// display calculator on top of the frame
 	jf.setLayout(null);
-	jf.setSize(500,650);
+	jf.setSize(555,655);
 	jf.setLocation(675,225); 		//Where to display the frame (initial visible location)
 	
 	displayLabel=new JLabel(); 			//for Text area
-	displayLabel.setBounds(30, 55, 420, 45);
+	displayLabel.setBounds(30, 55, 485, 45);
 	displayLabel.setBackground(Color.GRAY);  	//add color to the text area
 	displayLabel.setOpaque(true);
 	displayLabel.setHorizontalAlignment(SwingConstants.RIGHT); 		// Text section starting point move to right position
@@ -129,17 +133,23 @@ public Calculator() {
 	zero.setFont(new Font ("Arial", Font.PLAIN, 32));
 	jf.add(zero);
 	
+	plus=new JButton("+");		
+	plus.setBounds(235, 430, 80, 80);
+	plus.addActionListener(this);
+	plus.setFont(new Font ("Arial", Font.PLAIN, 32));
+	jf.add(plus);
+	
 	equal=new JButton("=");		
-	equal.setBounds(235, 430, 80, 80);
+	equal.setBounds(335, 430, 80, 80);
 	equal.addActionListener(this);
 	equal.setFont(new Font ("Arial", Font.PLAIN, 32));
 	jf.add(equal);
 	
-	plus=new JButton("+");		
-	plus.setBounds(335, 430, 80, 80);
-	plus.addActionListener(this);
-	plus.setFont(new Font ("Arial", Font.PLAIN, 32));
-	jf.add(plus);
+	clr=new JButton("clr");		
+	clr.setBounds(435, 430, 90, 80);
+	clr.addActionListener(this);
+	clr.setFont(new Font ("Arial", Font.PLAIN, 32));
+	jf.add(clr);
 	
 	
 	
@@ -154,48 +164,137 @@ public static void main(String ar[]){
 @Override
 public void actionPerformed(ActionEvent e) {
 	if (e.getSource()==seven) {
-		displayLabel.setText(displayLabel.getText()+"7");  //displaylabel.getText inside setText used for concatinatination
+		if (isOperatorClicked) {
+			displayLabel.setText("7");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"7");
+		}
 	}
 	else if (e.getSource()==eight) {
-		displayLabel.setText(displayLabel.getText()+"8");
+		if (isOperatorClicked) {
+			displayLabel.setText("8");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"8");
+		}
 	}
 	else if (e.getSource()==nine) {
-		displayLabel.setText(displayLabel.getText()+"9");
+		if (isOperatorClicked) {
+			displayLabel.setText("9");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"9");
+		}
 	}
-	else if (e.getSource()==div) {
-	}
+
 	else if (e.getSource()==four) {
-		displayLabel.setText(displayLabel.getText()+"4");
+		if (isOperatorClicked) {
+			displayLabel.setText("4");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"4");
+		}
 	}
 	else if (e.getSource()==five) {
-		displayLabel.setText(displayLabel.getText()+"5");
+		if (isOperatorClicked) {
+			displayLabel.setText("5");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"5");
+		}
 	}
 	else if (e.getSource()==six) {
-		displayLabel.setText(displayLabel.getText()+"6");
+		if (isOperatorClicked) {
+			displayLabel.setText("6");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"6");
+		}
 	}
-	else if (e.getSource()==mul) {
-	}
+	
 	else if (e.getSource()==one) {
-		displayLabel.setText(displayLabel.getText()+"1");
+		if (isOperatorClicked) {
+			displayLabel.setText("1");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"1");
+		}
 	}
 	else if (e.getSource()==two) {
-		displayLabel.setText(displayLabel.getText()+"2");
+		if (isOperatorClicked) {
+			displayLabel.setText("2");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"2");
+		}
 	}
 	else if (e.getSource()==three) {
-		displayLabel.setText(displayLabel.getText()+"3");
-	}
-	else if (e.getSource()==minus) {
+		if (isOperatorClicked) {
+			displayLabel.setText("3");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"3");
+		}
 	}
 	else if (e.getSource()==dot) {
-		displayLabel.setText(displayLabel.getText()+".");
+		if (isOperatorClicked) {
+			displayLabel.setText(".");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+".");
+		}
 	}
 	else if (e.getSource()==zero) {
-		displayLabel.setText(displayLabel.getText()+"0");
+		if (isOperatorClicked) {
+			displayLabel.setText("0");
+			isOperatorClicked=false;
+		}
+		else {
+			displayLabel.setText(displayLabel.getText()+"0");
+		}
 	}
+	
+	
 	else if (e.getSource()==equal) {
+		String newValue=displayLabel.getText();
+		float oldValueF=Float.parseFloat(oldvalue);
+		float newValueF=Float.parseFloat(newValue);
+		float result=oldValueF+newValueF;
+		displayLabel.setText(result+"");   //+" convert to string type
+
+	}
+	else if (e.getSource()==div) {
+		
+		isOperatorClicked=true;
+		oldvalue=displayLabel.getText();
+	}
+	else if (e.getSource()==mul) {
+		isOperatorClicked=true;
+		oldvalue=displayLabel.getText();
+	}
+	else if (e.getSource()==minus) {
+		isOperatorClicked=true;
+		oldvalue=displayLabel.getText();
 	}
 	else if(e.getSource()==plus) {
+		isOperatorClicked=true;
+		oldvalue=displayLabel.getText();
 	}
+	else if (e.getSource()==clr) {
+		displayLabel.setText("");
+	}
+	
 	
 	
 }
